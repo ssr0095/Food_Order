@@ -7,7 +7,7 @@ const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState("");
   const [foodList, setFoodList] = useState([]);
-  const [isVerified, setIsVerified] = useState(false);
+  // const [isVerified, setIsVerified] = useState(false);
 
   const url = "https://food-order-frontend-nlzg.onrender.com/";
 
@@ -37,21 +37,21 @@ const StoreContextProvider = (props) => {
     }
   };
 
-  const getUserVerification = async () => {
-    try {
-      const res = await axios.post(
-        url + "/api/user/isAuth",
-        {},
-        {
-          headers: { token },
-        },
-      );
-      setIsVerified(res.data.success);
-      console.log(isVerified + "is verified");
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const getUserVerification = async () => {
+  //   try {
+  //     const res = await axios.post(
+  //       url + "/api/user/isAuth",
+  //       {},
+  //       {
+  //         headers: { token },
+  //       },
+  //     );
+  //     setIsVerified(res.data.success);
+  //     console.log(isVerified + "is verified");
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   const fetchFoodList = async () => {
     const res = await axios.post(url + "/api/food/list");
@@ -73,7 +73,7 @@ const StoreContextProvider = (props) => {
       if (localStorage.getItem("token")) {
         setToken(localStorage.getItem("token"));
       }
-      await getUserVerification();
+      // await getUserVerification();
       await loadCartData(localStorage.getItem("token"));
     }
     loadData();
@@ -103,8 +103,8 @@ const StoreContextProvider = (props) => {
     url,
     token,
     setToken,
-    isVerified,
-    getUserVerification,
+    // isVerified,
+    // getUserVerification,
   };
   return (
     <StoreContext.Provider value={contextValue}>
