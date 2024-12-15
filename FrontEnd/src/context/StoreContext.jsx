@@ -113,8 +113,5 @@ const StoreContextProvider = (props) => {
   );
 };
 
-if (import.meta.hot) {
-  import.meta.hot.accept();
-}
 
 export default StoreContextProvider;
