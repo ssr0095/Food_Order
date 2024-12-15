@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     cartData: { type: Object, default: {} },
+    verifyOTP: { type: String, default: "" },
+    verifyOTPexpireAt: { type: Number, default: 0 },
+    isAccountVerified: { type: Boolean, default: false },
+    resetOTP: { type: String, default: "" },
+    resetOTPexpireAt: { type: Number, default: 0 },
   },
   { minimize: false }
 );

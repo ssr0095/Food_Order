@@ -7,7 +7,9 @@ const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState("");
   const [foodList, setFoodList] = useState([]);
-  const url = "http://localhost:4000";
+  const [isVerified, setIsVerified] = useState(false);
+
+  const url = "http://localhost:7000";
 
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
@@ -35,6 +37,22 @@ const StoreContextProvider = (props) => {
     }
   };
 
+  const getUserVerification = async () => {
+    try {
+      const res = await axios.post(
+        url + "/api/user/isAuth",
+        {},
+        {
+          headers: { token },
+        },
+      );
+      setIsVerified(res.data.success);
+      console.log(isVerified + "is verified");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   const fetchFoodList = async () => {
     const res = await axios.post(url + "/api/food/list");
     setFoodList(res.data.data);
@@ -55,6 +73,7 @@ const StoreContextProvider = (props) => {
       if (localStorage.getItem("token")) {
         setToken(localStorage.getItem("token"));
       }
+      await getUserVerification();
       await loadCartData(localStorage.getItem("token"));
     }
     loadData();
@@ -84,6 +103,8 @@ const StoreContextProvider = (props) => {
     url,
     token,
     setToken,
+    isVerified,
+    getUserVerification,
   };
   return (
     <StoreContext.Provider value={contextValue}>
@@ -91,5 +112,9 @@ const StoreContextProvider = (props) => {
     </StoreContext.Provider>
   );
 };
+
+if (import.meta.hot) {
+  import.meta.hot.accept();
+}
 
 export default StoreContextProvider;

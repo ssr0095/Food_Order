@@ -9,11 +9,11 @@ const NavBar = ({ setShowLogin }) => {
   //     ? "after:block after:relative after:bottom-0 after:w-full after:h-[5px] after:bg-tomato after:rounded-full"
   //     : "";
   // };
-  const { getTotalAmt, token, setToken } = useContext(StoreContext);
+  const { getTotalAmt, token, setToken, isVerified } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.clear();
     setToken("");
     navigate("/");
     window.location.reload();
@@ -54,9 +54,9 @@ const NavBar = ({ setShowLogin }) => {
               src={assets.profile_icon}
               className="w-4 cursor-pointer md:w-5"
             />
-            <div className="absolute -bottom-16 -right-2 z-30 hidden flex-col items-start rounded-lg bg-white p-1 shadow-lg shadow-[#00000047] group-hover:flex md:-bottom-[5.5rem]">
+            <div className="absolute -bottom-32 -right-2 z-30 hidden flex-col items-start rounded-lg bg-white p-1 shadow-lg shadow-[#00000047] group-hover:flex md:-bottom-[5.5rem]">
               <div
-                className="flex w-[6rem] items-center gap-3 rounded-lg p-1 text-xs text-gray-500 shadow-sm hover:bg-gray-200 md:w-[7rem] md:p-3"
+                className="flex w-[7rem] items-center gap-3 rounded-lg p-1 text-xs text-gray-500 shadow-sm hover:bg-gray-200 md:w-[8rem] md:p-3"
                 onClick={() => {
                   navigate("/MyOrders");
                 }}
@@ -65,7 +65,7 @@ const NavBar = ({ setShowLogin }) => {
                 <p>My Orders</p>
               </div>
               <div
-                className="flex w-[6rem] items-center gap-3 rounded-lg p-1 text-xs text-gray-500 shadow-sm hover:bg-gray-200 md:w-[7rem] md:p-3"
+                className="flex w-[7rem] items-center gap-3 rounded-lg p-1 text-xs text-gray-500 shadow-sm hover:bg-gray-200 md:w-[8rem] md:p-3"
                 onClick={logout}
               >
                 <img src={assets.logout_icon} className="w-[0.65rem] md:w-4" />

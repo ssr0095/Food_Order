@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
-import "dotenv/config";
 
 const connDB = async () => {
   await mongoose
-    .connect(process.env.DBSTRING)
+    .connect(`${process.env.DBSTRING}/potato`)
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => {
       console.log("Connection error: ", err);
     });
+
+  // mongoose.set("useFindAndModify", false);
 };
 
 export default connDB;

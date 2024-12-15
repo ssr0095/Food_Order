@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../context/StoreContext";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -15,6 +15,10 @@ const LoginPopUp = ({ setShowLogin }) => {
     password: "",
   });
 
+  const resetPass = () => {
+    setShowLogin(false);
+    navigate("/resetPassword");
+  };
   const onChangeHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -31,16 +35,51 @@ const LoginPopUp = ({ setShowLogin }) => {
       newUrl += "/api/user/login";
     }
 
+    const userData = Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [key, value.trim()]),
+    );
+
     try {
-      const res = await axios.post(newUrl, data);
+      const res = await axios.post(newUrl, userData);
 
       if (res.data.success) {
+        // if user not exits
         setToken(res.data.token);
         localStorage.setItem("token", res.data.token);
         setShowLogin(false);
-        toast.success(res.data.message);
-        window.location.reload();
+        console.log(res.data.isAccountVerified + "is Acc verified?");
+        // toast.success(res.data.message);
+        if (res.data.isAccountVerified === false) {
+          // if user not exits & email not verified
+          await axios
+            .post(
+              url + "/api/user/sendOTP",
+              {},
+              { headers: { token: res.data.token } },
+            )
+            .then(() => {
+              navigate("/verifyAccount");
+            });
+        } else {
+          window.location.reload();
+        }
+      } else if (res.data.isAccountVerified === true) {
+        // if user already exits & email verified
+        toast.error(res.data.message);
+        setSignTitle("Login");
+      } else if (res.data.isAccountVerified === false) {
+        // if user already exits & email not verified
+        await axios.post(
+          url + "/api/user/sendOTP",
+          {},
+          { headers: { token: res.data.token } },
+        );
+        console.log(res.data);
+        setToken(res.data.token);
+        setShowLogin(false);
+        navigate("/verifyAccount");
       } else {
+        // if user not exits but type error
         toast.error(res.data.message);
       }
     } catch (error) {
@@ -51,7 +90,7 @@ const LoginPopUp = ({ setShowLogin }) => {
   return (
     <div className="absolute z-10 flex h-lvh w-full items-center justify-center bg-pop px-4">
       <form
-        className="flex max-w-[20rem] animate-fadeIn flex-col items-center gap-5 rounded-lg bg-white p-7 text-base text-gray-500 opacity-100 duration-200"
+        className="flex w-[90%] animate-fadeIn flex-col items-center gap-5 rounded-lg bg-white p-7 text-base text-gray-500 opacity-100 duration-200 md:w-[60%] lg:w-[27%]"
         onSubmit={onSubmitHandler}
       >
         <div className="flex w-full items-center justify-between">
@@ -93,13 +132,19 @@ const LoginPopUp = ({ setShowLogin }) => {
             value={data.password}
           />
         </div>
+        {signTitle === "Login" && (
+          <div className="flex w-full cursor-default items-center justify-end text-sm">
+            <p onClick={resetPass}>Forget password?</p>
+          </div>
+        )}
+
         <div className="flex w-full items-center justify-start gap-3">
           <input
             type="checkbox"
             required
-            className="focus:ring-3 -mt-5 size-5 rounded border-4 border-green-600 bg-gray-50 focus:border-tomato"
+            className="focus:ring-3 -mt-5 size-3 rounded border-4 border-green-600 bg-gray-50 focus:border-tomato"
           />
-          <p className="text-sm">
+          <p className="text-xs">
             By continuing, I accept the terms of use & privacy policy.
           </p>
         </div>
