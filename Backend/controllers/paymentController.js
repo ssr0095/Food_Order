@@ -3,7 +3,7 @@ import orderModel from "../models/orderModel.js";
 // import userModel from "../models/userModel.js";
 
 const paymentComplete = async (req, res) => {
-  const frontend_url = "http://localhost:3000";
+  const frontend_url = "https://food-order-frontend-nlzg.onrender.com";
 
   try {
     const session = {
