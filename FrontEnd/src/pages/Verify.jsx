@@ -4,7 +4,7 @@ import { StoreContext } from "../context/StoreContext";
 import axios from "axios";
 
 const Verify = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const { url, token } = useContext(StoreContext);
   const success = searchParams.get("success");
   const orderId = searchParams.get("orderId");
@@ -38,8 +38,15 @@ const Verify = () => {
     verifyPayment();
   }, []);
   return (
-    <div className="flex h-screen w-full items-center justify-center">
-      <span className="h-20 w-20 animate-spin rounded-full border-t-4 border-tomato"></span>
+    <div
+      id="loading"
+      className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-white"
+    >
+      <div className="relative inline-flex">
+        <div className="size-12 rounded-full bg-tomato"></div>
+        <div className="absolute left-0 top-0 size-12 animate-ping rounded-full bg-tomato"></div>
+        <div className="absolute left-0 top-0 size-12 animate-pulse rounded-full bg-tomato"></div>
+      </div>
     </div>
   );
 };

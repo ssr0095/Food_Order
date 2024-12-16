@@ -24,6 +24,9 @@ const NotFound = () => {
               Contact support <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
+          <h1 className="text-balance text-5xl font-semibold tracking-tight text-tomato sm:text-7xl">
+            Potato.
+          </h1>
         </div>
       </main>
     </>

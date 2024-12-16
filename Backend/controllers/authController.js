@@ -37,7 +37,7 @@ const login = async (req, res) => {
       isAccountVerified: user.isAccountVerified,
     });
   } catch (error) {
-    console.log(error);
+    console.log("Error: " + error);
     res.json({ success: false, message: `Error: ${error.message}` });
   }
 };
@@ -110,7 +110,7 @@ const register = async (req, res) => {
       isAccountVerified: newUser.isAccountVerified,
     });
   } catch (error) {
-    console.log(error);
+    console.log("Error: " + error);
     res.json({ success: false, message: `Error: ${error.message}` });
   }
 };
@@ -152,13 +152,11 @@ const sendVerifyOTP = async (req, res) => {
 
 const verifyEmail = async (req, res) => {
   const { userId, OTP } = req.body;
-  console.log(req.body);
   if (!userId || !OTP) {
     return res.json({ success: false, message: "Missing details" });
   }
   try {
     const user = await userModel.findById(userId);
-    console.log(user, OTP);
     if (!user) {
       return res.json({ success: false, message: "User not found" });
     }
@@ -177,7 +175,7 @@ const verifyEmail = async (req, res) => {
     return res.json({ success: true, message: "Account verfied successfully" });
   } catch (error) {
     res.json({ success: false, message: error.message });
-    console.log(error.message + "now auth contr");
+    console.log("Error: " + error.message + "now auth contr");
   }
 };
 
@@ -209,7 +207,6 @@ const sendResetOTP = async (req, res) => {
         .replace("{{FRONT_URL}}", process.env.FRONT_URL),
     };
     await transporter.sendMail(mailOptions);
-    console.log("mail sent");
     return res.json({ success: true, message: "Reset OTP sent" });
   } catch (error) {
     res.json({ success: false, message: error.message });
@@ -288,7 +285,6 @@ const resetPassword = async (req, res) => {
 
 const isAuthenticated = async (req, res) => {
   const { userId } = req.body;
-  console.log(userId);
   try {
     if (userId) {
       return res.json({ success: true });
@@ -297,7 +293,7 @@ const isAuthenticated = async (req, res) => {
     }
   } catch (error) {
     res.json({ success: false, message: error.message });
-    console.log(error);
+    console.log("Error: " + error);
   }
 };
 
