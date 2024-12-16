@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const VerifyAccount = () => {
-  const { url, token, getUserVerification } = useContext(StoreContext);
+  const { url, token } = useContext(StoreContext);
   const inputRef = React.useRef([]);
   const navigate = useNavigate();
   const [isDisabled, setIsDisabled] = useState(false);
@@ -100,7 +100,6 @@ const VerifyAccount = () => {
       );
       if (res.data.success) {
         toast.success(res.data.message);
-        getUserVerification();
         navigate("/");
       } else {
         toast.error(res.data.message);
