@@ -39,10 +39,10 @@ const ResetPassword = () => {
         localStorage.setItem("isDisabled", false);
       }
     }
-    if (Q_email || Q_otp) {
+    if (Q_otp) {
       QsumbitOTP();
     }
-  }, [Q_email, Q_otp]);
+  }, [Q_otp]);
 
   const handleResend = async () => {
     if (!isDisabled) {
@@ -106,6 +106,7 @@ const ResetPassword = () => {
       }
     } catch (error) {
       toast.error(error.message);
+      console.log("email sent error: " + error.message);
     }
   };
 
@@ -115,9 +116,9 @@ const ResetPassword = () => {
       const OTParray = inputRef.current.map((e) => e.value);
       const otp = OTParray.join("");
       setOTP(otp);
-      console.log(OTP, email);
+      // console.log(OTP, email);
       const res = await axios.post(url + "/api/user/verifyResetOTP", {
-        OTP,
+        OTP: otp,
         email,
       });
       if (res.data.success) {
@@ -148,6 +149,7 @@ const ResetPassword = () => {
       }
     } catch (error) {
       toast.error(error.message);
+      console.log("Q OTP sent error: " + error.message);
     }
   };
 

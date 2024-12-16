@@ -112,7 +112,7 @@ const VerifyAccount = () => {
 
   const QEmailverify = async () => {
     try {
-      console.log(Q_otp + " from vA");
+      // console.log(Q_otp + " from vA");
 
       const res = await axios.post(
         url + "/api/user/verifyAccount",
