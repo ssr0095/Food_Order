@@ -39,10 +39,10 @@ const ResetPassword = () => {
         localStorage.setItem("isDisabled", false);
       }
     }
-    if (Q_otp) {
+    if (Q_email || Q_otp) {
       QsumbitOTP();
     }
-  }, [Q_otp]);
+  }, [Q_email, Q_otp]);
 
   const handleResend = async () => {
     if (!isDisabled) {
