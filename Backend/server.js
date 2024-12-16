@@ -29,9 +29,9 @@ app.use(cookieParser());
 app.use("/api/food", foodRouter);
 app.use("/images", express.static("uploads"));
 app.use("/api/user", authRouter);
-app.use("/api/cart/", cartRouter);
-app.use("/api/order/", orderRouter);
-app.use("/api/payment/", paymentRouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
+app.use("/api/payment", paymentRouter);
 
 app.get("/", (req, res) => {
   res.send("Fucck");

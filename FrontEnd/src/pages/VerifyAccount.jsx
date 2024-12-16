@@ -5,8 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const VerifyAccount = () => {
-  const { url, token, isVerified, getUserVerification } =
-    useContext(StoreContext);
+  const { url, token, getUserVerification } = useContext(StoreContext);
   const inputRef = React.useRef([]);
   const navigate = useNavigate();
   const [isDisabled, setIsDisabled] = useState(false);
@@ -134,9 +133,9 @@ const VerifyAccount = () => {
     }
   };
 
-  useEffect(() => {
-    isVerified && navigate("/");
-  }, [isVerified]);
+  // useEffect(() => {
+  //   isVerified && navigate("/");
+  // }, [isVerified]);
 
   return (
     <>

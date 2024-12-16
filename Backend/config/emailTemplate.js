@@ -8,7 +8,7 @@ export const EMAIL_VERIFY_TEMPLATE = `<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <title>Tomato. | Email Verify</title>
+    <title>Potato. | Email Verify</title>
     <style>
         body {
             font-family: 'Outfit',Arial, sans-serif;
@@ -73,7 +73,7 @@ export const EMAIL_VERIFY_TEMPLATE = `<!DOCTYPE html>
         .button:hover {
             background-color: rgb(251, 119, 96);
         }
-            a[href]{
+        .content a[href],.content a{
             color: white;
             }
     </style>
@@ -82,7 +82,7 @@ export const EMAIL_VERIFY_TEMPLATE = `<!DOCTYPE html>
 <body>
     <div class="container">
         <div class="header">
-            Tomato. | Email Verification
+            Potato. | Email Verification
         </div>
         <div class="content">
             <p>Hello {{name}},</p>
@@ -92,8 +92,8 @@ export const EMAIL_VERIFY_TEMPLATE = `<!DOCTYPE html>
             <p>If you didn’t request this, please ignore this email.</p>
         </div>
         <div class="footer">
-            <p>© 2025 Tomato. All rights reserved.</p>
-            <p>Need help? <a href="mailto:support@fuckme.com">Contact Support</a></p>
+            <p>© 2025 Potato. All rights reserved.</p>
+            <p>Need help? <a href="mailto:support@potato.com">Contact Support</a></p>
         </div>
     </div>
 </body>
@@ -109,7 +109,7 @@ export const PASSWORD_RESET_TEMPLATE = `<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <title>Tomato. | Reset Password</title>
+    <title>Potato. | Reset Password</title>
     <style>
         body {
             font-family: 'Outfit',Arial, sans-serif;
@@ -174,7 +174,7 @@ export const PASSWORD_RESET_TEMPLATE = `<!DOCTYPE html>
         .button:hover {
             background-color: rgb(251, 119, 96);
         }
-            a[href]{
+        .content a[href],.content a{
             color: white;
             }
     </style>
@@ -183,7 +183,7 @@ export const PASSWORD_RESET_TEMPLATE = `<!DOCTYPE html>
 <body>
     <div class="container">
         <div class="header">
-            Tomato. | Reset Password
+            Potato. | Reset Password
         </div>
         <div class="content">
             <p>Hello {{name}},</p>
@@ -193,8 +193,8 @@ export const PASSWORD_RESET_TEMPLATE = `<!DOCTYPE html>
             <p>If you didn’t request this, please ignore this email.</p>
         </div>
         <div class="footer">
-            <p>© 2025 Tomato. All rights reserved.</p>
-            <p>Need help? <a href="mailto:support@fuckme.com">Contact Support</a></p>
+            <p>© 2025 Potato. All rights reserved.</p>
+            <p>Need help? <a href="mailto:support@potato.com">Contact Support</a></p>
         </div>
     </div>
 </body>

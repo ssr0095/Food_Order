@@ -9,7 +9,7 @@ const NavBar = ({ setShowLogin }) => {
   //     ? "after:block after:relative after:bottom-0 after:w-full after:h-[5px] after:bg-tomato after:rounded-full"
   //     : "";
   // };
-  const { getTotalAmt, token, setToken, isVerified } = useContext(StoreContext);
+  const { getTotalAmt, token, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const logout = () => {
