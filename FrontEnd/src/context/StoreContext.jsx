@@ -9,7 +9,7 @@ const StoreContextProvider = (props) => {
   const [foodList, setFoodList] = useState([]);
   // const [isVerified, setIsVerified] = useState(false);
 
-  const url = "https://food-order-frontend-nlzg.onrender.com/";
+  const url = "https://food-order-backend-2dvi.onrender.com";
 
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
