@@ -121,7 +121,6 @@ const VerifyAccount = () => {
       );
       if (res.data.success) {
         toast.success(res.data.message);
-        getUserVerification();
         navigate("/");
       } else {
         toast.error(res.data.message);
