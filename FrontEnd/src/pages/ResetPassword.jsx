@@ -86,12 +86,25 @@ const ResetPassword = () => {
 
   const pasteHandler = (e) => {
     e.preventDefault();
-    const paste = e.clipboardData.getData("text");
-    const pasteData = paste.split("");
-    pasteData.forEach((char, index) => {
-      if (inputRef.current[index]) inputRef.current[index].value = char;
-    });
+    const pasteData = e.clipboardData.getData("text").trim();
+    if (pasteData.length === 6 && /^\d{6}$/.test(pasteData)) {
+      [...pasteData].forEach((num, idx) => {
+        if (inputRef.current[idx]) {
+          inputRef.current[idx].value = num;
+        }
+      });
+      inputRef.current[5]?.focus();
+    }
   };
+
+  // const pasteHandler = (e) => {
+  //   e.preventDefault();
+  //   const paste = e.clipboardData.getData("text");
+  //   const pasteData = paste.split("");
+  //   pasteData.forEach((char, index) => {
+  //     if (inputRef.current[index]) inputRef.current[index].value = char;
+  //   });
+  // };
 
   const onSubmitEmail = async (e) => {
     e.preventDefault();
@@ -106,7 +119,6 @@ const ResetPassword = () => {
       }
     } catch (error) {
       toast.error(error.message);
-      console.log("email sent error: " + error.message);
     }
   };
 
@@ -116,7 +128,6 @@ const ResetPassword = () => {
       const OTParray = inputRef.current.map((e) => e.value);
       const otp = OTParray.join("");
       setOTP(otp);
-      // console.log(OTP, email);
       const res = await axios.post(url + "/api/user/verifyResetOTP", {
         OTP: otp,
         email,
@@ -149,7 +160,6 @@ const ResetPassword = () => {
       }
     } catch (error) {
       toast.error(error.message);
-      console.log("Q OTP sent error: " + error.message);
     }
   };
 
