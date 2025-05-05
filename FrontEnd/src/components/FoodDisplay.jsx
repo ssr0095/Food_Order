@@ -40,7 +40,7 @@ const FoodDisplay = ({ category }) => {
         </div>
       ) : (
         <div className="my-28 flex w-full items-center justify-center">
-          <span className="text-gray-500">No data available.</span>
+          <span className="text-gray-500">Please wait, it maximum takes 1 min...</span>
         </div>
         // <div
         //   role="status"
